@@ -8,8 +8,6 @@ const useUsersList = () => {
         .then(response => response.json())
         .then(json => {
           setUsersList(json);
-
-          console.log('### userList', json);
         })
         .catch(error => {
           console.error(error);

@@ -6,13 +6,11 @@ import useUsersList from './useUsersList';
 const UsersList = () => {
   const {usersList} = useUsersList();
 
-  console.log('### comp', usersList && usersList[0]);
-
   return (
     <SafeAreaView>
       <FlatList
         data={usersList}
-        renderItem={({item}) => <User name={item.name} email={item.email} />}
+        renderItem={({item}) => <User userData={item} />}
         keyExtractor={item => item.id}
       />
     </SafeAreaView>
