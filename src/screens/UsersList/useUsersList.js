@@ -1,13 +1,26 @@
 import {useState, useEffect} from 'react';
+
+const initialState = {
+  data: undefined,
+  isLoading: true,
+  error: undefined,
+};
+
 const useUsersList = () => {
-  const [usersList, setUsersList] = useState([]);
+  const [listApiState, setListApiState] = useState(initialState);
 
   useEffect(() => {
+    setListApiState(initialState);
+
     const fetchUsers = () => {
       fetch('https://jsonplaceholder.typicode.com/users')
         .then(response => response.json())
         .then(json => {
-          setUsersList(json);
+          setListApiState({
+            data: json,
+            isLoading: false,
+            error: undefined,
+          });
         })
         .catch(error => {
           console.error(error);
@@ -18,7 +31,8 @@ const useUsersList = () => {
   }, []);
 
   return {
-    usersList,
+    ...listApiState,
+    usersList: listApiState.data,
   };
 };
 

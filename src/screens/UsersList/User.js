@@ -3,17 +3,17 @@ import {TouchableOpacity, Text, StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {SCREENS} from '../../navigation/NavigationConstants';
 
-const User = ({userData}) => {
+const User = ({userId, name, email}) => {
   const navigation = useNavigation();
 
   const navigateToUserDetails = () => {
-    navigation.navigate(SCREENS.USER_DETAILS, {userData});
+    navigation.navigate(SCREENS.USER_DETAILS, {userId});
   };
 
   return (
     <TouchableOpacity style={styles.Container} onPress={navigateToUserDetails}>
-      <Text style={styles.text}>Name: {userData?.name}</Text>
-      <Text style={styles.text}>Email: {userData?.email}</Text>
+      <Text style={styles.text}>Name: {name}</Text>
+      <Text style={styles.text}>Email: {email}</Text>
     </TouchableOpacity>
   );
 };
